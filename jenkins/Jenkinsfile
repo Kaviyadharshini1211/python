@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch:'main', url: 'https://github.com/Kaviyadharshini1211/python.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'docker-compose build'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'docker-compose up -d'
+            }
+        }
+    }
+}
